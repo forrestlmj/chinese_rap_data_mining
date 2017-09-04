@@ -37,6 +37,8 @@ def get_user_playlist_info(playlist_id):
     url = "http://music.163.com/api/playlist/detail?id=82729253"
     req = urllib.request.Request(url=url, headers=headers)
 
+    
+
     resp = urllib.request.urlopen(req)
     result = resp.read()
     soup_result(result)
