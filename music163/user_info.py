@@ -18,6 +18,7 @@ headers = {"Content-type": "application/x-www-form-urlencoded",
            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
            "Connection": "close",
            "Cache-Control": "no-cache"}
+RETURN_MAX_LIMIT = 10000
 
 
 def soup_result(result):
@@ -42,6 +43,9 @@ def get_user_playlist_info(playlist_id):
 
 def get_user_playlist(user_id):
     # return playlist_id and playlist_name
+    url = "http://music.163.com/api/user/playlist"
+    req = requests.get(url, params={'uid': user_id, 'offset': 0, 'limit': RETURN_MAX_LIMIT})
+    context = req.json()
     playlist_id = ''
     playlist_name = ''
     user_playlist_list = []

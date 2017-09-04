@@ -8,8 +8,8 @@ import music163.user_info as user
 # user.get_user_playlist_info(82729523)
 
 
-search_list = ["风采无限的一只猫", "李胖胖034081", "joker199319"]
-# search_list = ["风采无限的一只猫"]
+# search_list = ["风采无限的一只猫", "李胖胖034081", "joker199319"]
+search_list = ["joker199319"]
 my_user_list = []
 for search_word in search_list:
     my_user = user.search_user(search_word)
