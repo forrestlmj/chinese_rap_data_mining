@@ -15,9 +15,9 @@
 #curl -d "s=Enlei_&limit=1&type=1002&" -b "appver=1.5.2;" http://music.163.com/api/search/get/ > curl_result/Enlei__1002.txt
 #curl -d "s=sxingnow&limit=1&type=1002&" -b "appver=1.5.2;" http://music.163.com/api/search/get/ > curl_result/sxingnow_1002.txt
 #curl -d "s=lovesoko&limit=1&type=1002&" -b "appver=1.5.2;" http://music.163.com/api/search/get/ > curl_result/lovesoko_1002.txt
-curl -d "s=joker199319&limit=1&type=1002&" -b "appver=1.5.2;" http://music.163.com/api/search/get/ > curl_result/joker199319_1002.txt
-
-
+#curl -d "s=joker199319&limit=1&type=1002&" -b "appver=1.5.2;" http://music.163.com/api/search/get/ > curl_result/joker199319_1002.txt
+#get cat's playlist by cat's uuid
+curl -d "uid=75736587&limit=10&offset=0" -b "appver=1.5.2;" http://music.163.com/api/user/playlist
 #cat's playlist
 #curl -d "s=享受做菜的时光&limit=1&type=1000&" -b "appver=1.5.2;" http://music.163.com/api/search/get/ > curl_result/her_playlist_1000_1.txt
 #curl -d "s=抖腿李&limit=1&type=1000&" -b "appver=1.5.2;" http://music.163.com/api/search/get/ > curl_result/her_palylist_1000_2.txt
