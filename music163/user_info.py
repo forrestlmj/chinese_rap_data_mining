@@ -1,5 +1,23 @@
 import urllib
 from bs4 import BeautifulSoup
+import requests
+
+# s: 搜索词
+# limit: 返回数量
+# sub: 意义不明(非必须参数)；取值：false
+# type:
+#    1 单曲
+#    10 专辑
+#    100 歌手
+#    1000 歌单
+#    1002 用户
+
+headers = {"Content-type": "application/x-www-form-urlencoded",
+           'Accept-Language': 'zh-CN,zh;q=0.8',
+           'User-Agent': "Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0",
+           "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+           "Connection": "close",
+           "Cache-Control": "no-cache"}
 
 
 def soup_result(result):
@@ -14,12 +32,7 @@ def write_result(result):
 
 def get_user_playlist_info(playlist_id):
     # return song_id and song_name
-    headers = {"Content-type": "application/x-www-form-urlencoded",
-               'Accept-Language': 'zh-CN,zh;q=0.8',
-               'User-Agent': "Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0",
-               "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-               "Connection": "close",
-               "Cache-Control": "no-cache"}
+
     url = "http://music.163.com/api/playlist/detail?id=82729253"
     req = urllib.request.Request(url=url, headers=headers)
     resp = urllib.request.urlopen(req)
@@ -38,7 +51,12 @@ def get_user_playlist(user_id):
 
 def search_user(search_word):
     # return 1 result:user_id and user_name
-    user_id = ""
-    user_name = ""
+    url = "http://music.163.com/api/search/get/"
+    req = requests.post(url, data={'s': search_word, 'limit': 1, 'type': 1002})
+    context = req.json()
+    resp_code = context['code']
+    print("返回结果"+str(resp_code))
+    user_id = context['result']['userprofiles'][0]['userId']
+    user_name = context['result']['userprofiles'][0]['nickname']
     search_result = {'user_id': user_id, 'user_name': user_name}
     return search_result

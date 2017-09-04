@@ -9,8 +9,11 @@ import music163.user_info as user
 
 
 search_list = ["风采无限的一只猫", "李胖胖034081", "joker199319"]
+# search_list = ["风采无限的一只猫"]
+my_user_list = []
 for search_word in search_list:
     my_user = user.search_user(search_word)
+    my_user_list.append(my_user)
 
 # for user_id, user_name in my_user:
 #     print(user_name)
