@@ -1,6 +1,7 @@
-import urllib
-from bs4 import BeautifulSoup
 import requests
+
+# Request 163 web api,get response in json , so just draw useful info like user name,playlist name into another json.
+# Every function return is a dict data structure,so the caller can json dump it.
 
 # s: 搜索词
 # limit: 返回数量
@@ -22,7 +23,6 @@ RETURN_MAX_LIMIT = 10000
 
 
 def soup_result(result):
-    soup = BeautifulSoup(result, "html.parser")
 
     return
 
@@ -34,14 +34,15 @@ def write_result(result):
 def get_user_playlist_info(playlist_id):
     # return song_id and song_name
 
-    url = "http://music.163.com/api/playlist/detail?id=82729253"
-    req = urllib.request.Request(url=url, headers=headers)
-
-    
-
-    resp = urllib.request.urlopen(req)
-    result = resp.read()
-    soup_result(result)
+    url = "http://music.163.com/api/playlist/detail"
+    req = requests.get(url, params={'id': str(playlist_id)})
+    context = req.json()
+    playlist_info = []
+    for track in context['result']['tracks']:
+        # artist just crawl the first one
+        track_info = {'song_name': track['name'], 'song_id': track['id'], 'artist': track['artists'][0]['name']}
+        playlist_info.append(track_info)
+    return playlist_info
 
 
 def get_user_playlist(user_id):
@@ -49,10 +50,10 @@ def get_user_playlist(user_id):
     url = "http://music.163.com/api/user/playlist"
     req = requests.get(url, params={'uid': user_id, 'offset': 0, 'limit': RETURN_MAX_LIMIT})
     context = req.json()
-    playlist_id = ''
-    playlist_name = ''
     user_playlist_list = []
-    user_playlist_list.append({'playlist_id': playlist_id, 'playlist_name': playlist_name})
+    for my_dict in context['playlist']:
+        user_playlist = {'playlist_id': my_dict['id'], 'playlist_name': my_dict['name']}
+        user_playlist_list.append(user_playlist)
     return user_playlist_list
 
 

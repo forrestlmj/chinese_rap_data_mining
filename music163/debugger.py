@@ -22,5 +22,4 @@ for search_word in search_list:
 user_playlist = user.get_user_playlist(my_user['user_id'])
 
 for single_user_playlist in user_playlist:
-    user.get_user_playlist(single_user_playlist['playlist_id'])
-
+    info = user.get_user_playlist_info(single_user_playlist['playlist_id'])
