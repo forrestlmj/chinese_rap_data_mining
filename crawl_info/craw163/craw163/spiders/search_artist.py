@@ -4,6 +4,7 @@
 import scrapy
 from scrapy.utils.response import open_in_browser
 
+
 class searchArtist(scrapy.Spider):
     name = "search_artist"
 
@@ -14,6 +15,7 @@ class searchArtist(scrapy.Spider):
             data = {"s": search_word, "limit": 1, "type": 100}
             url2 = "http://music.163.com/api/search/get/?s=gai&limit=1&type=100"
             # TODO 20170916 Can not make a post request.In lib requests it works,using Postman get 403 forbidden error.
+            # TODO 20170922 Find out the relationship between Request Object and Response,how yield work.
             yield scrapy.Request(url=url, method="POST", body=str(data),
                                  callback=self.parse, cookies={"appver": "1.5.2"})
 
@@ -22,4 +24,3 @@ class searchArtist(scrapy.Spider):
         page = response.body
         yield {"content": response}
         print(page)
-
