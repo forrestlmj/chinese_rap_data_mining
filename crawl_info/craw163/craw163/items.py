@@ -10,5 +10,5 @@ import scrapy
 
 class Craw163Item(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    artist_id = scrapy.Field()
+    artist_name = scrapy.Field()
