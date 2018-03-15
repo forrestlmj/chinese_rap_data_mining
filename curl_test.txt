@@ -1,0 +1,32 @@
+#s: 搜索词
+#limit: 返回数量
+#sub: 意义不明(非必须参数)；取值：false
+#type: 搜索类型；取值意义
+#    1 单曲
+#    10 专辑
+#    100 歌手
+#    1000 歌单
+#    1002 用户
+#offset: 偏移数量，用于分页
+#MUSIC_U: 意义不明(非必须参数)
+
+#curl -d "s=风采无限的一只猫&limit=1&type=1002&" -b "appver=1.5.2;" http://music.163.com/api/search/get/ > curl_result/her_1002.txt
+#curl -d "s=李胖胖很搞笑&limit=1&type=1002&" -b "appver=1.5.2;" http://music.163.com/api/search/get/ > curl_result/her_ex_1002.txt
+#curl -d "s=Enlei_&limit=1&type=1002&" -b "appver=1.5.2;" http://music.163.com/api/search/get/ > curl_result/Enlei__1002.txt
+#curl -d "s=sxingnow&limit=1&type=1002&" -b "appver=1.5.2;" http://music.163.com/api/search/get/ > curl_result/sxingnow_1002.txt
+#curl -d "s=lovesoko&limit=1&type=1002&" -b "appver=1.5.2;" http://music.163.com/api/search/get/ > curl_result/lovesoko_1002.txt
+#curl -d "s=joker199319&limit=1&type=1002&" -b "appver=1.5.2;" http://music.163.com/api/search/get/ > curl_result/joker199319_1002.txt
+#get cat's playlist by cat's uuid
+curl -d "uid=75736587&limit=10&offset=0" -b "appver=1.5.2;" http://music.163.com/api/user/playlist
+#cat's playlist
+#curl -d "s=享受做菜的时光&limit=1&type=1000&" -b "appver=1.5.2;" http://music.163.com/api/search/get/ > curl_result/her_playlist_1000_1.txt
+#curl -d "s=抖腿李&limit=1&type=1000&" -b "appver=1.5.2;" http://music.163.com/api/search/get/ > curl_result/her_palylist_1000_2.txt
+#curl -o curl_result/her_playlist_382235706 http://music.163.com/api/playlist/detail?id=382235706&update=-1
+curl -d "s=gai&limit=1&type=100&" -b "appver=1.5.2;" http://music.163.com/api/search/get/
+
+#get cat's playlist:82729253
+curl -o curl_result/her_playlist_82729253 http://music.163.com/api/playlist/detail?id=82729253
+#ref:
+#http://moonlib.com/606.html
+#http://qianzewei.com/2015/12/10/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90api%E6%95%B4%E7%90%86/
+#https://github.com/darknessomi/musicbox/wiki/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90API%E5%88%86%E6%9E%90
