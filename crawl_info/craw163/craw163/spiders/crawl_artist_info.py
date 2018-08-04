@@ -7,10 +7,10 @@ class CrawlArtistInfo(scrapy.Spider):
     name = "crawl_artist_info"
     def start_requests(self):
         urls = [
-            "https://music.163.com/#/discover/artist/cat?id=1001&initial=65"
+            "https://music.163.com/discover/artist/cat?id=2001&initial=70"
         ]
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
     def parse(self, response):
-
+        a = response.text
         print(response)
