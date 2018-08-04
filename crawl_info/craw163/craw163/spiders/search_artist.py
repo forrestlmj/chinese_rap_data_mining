@@ -6,7 +6,6 @@ import scrapy
 import json
 from scrapy.utils.response import open_in_browser
 from craw163.items import Craw163Item
-import jsonpath_ng
 
 class searchArtist(scrapy.Spider):
     name = "search_artist"
