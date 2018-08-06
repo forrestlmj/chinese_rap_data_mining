@@ -8,6 +8,11 @@
 import scrapy
 
 
+class Craw163Item(scrapy.Item):
+    artist_id = scrapy.Field()
+    artist_name = scrapy.Field()
+
+
 class SingerItem(scrapy.Item):
     name = scrapy.Field()
     artistLink = scrapy.Field()
