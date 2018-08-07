@@ -12,18 +12,22 @@ class CrawlArtistInfo(scrapy.Spider):
             yield scrapy.Request(url="https://music.163.com/discover/artist/cat?id=2001&initial={0}".format(str(i)))
     def parse(self, response):
 
-        a = response.text
-        # for i in response.selector.xpath('//a[@class = "'"msk"'"]').extract():
-        #     # singerItem = SingerItem()
-        #     # singerItem['name'] =
-        #     # singerItem['artistLink'] =
-        #     # singerItem['isCertificated'] =
-        #     # singerItem['userHomeLink'] =
-        #     # singerItem['timestamp'] = datetime.now().strftime("%Y%m%d %H:%M:%S")
-        #     print(i)
-        # href_list = response.selector.xpath('//a[@class = "'"nm nm-icn f-thide s-fc0"'"]/@href').extract()
-        # name_list = response.selector.xpath('//a[@class = "'"nm nm-icn f-thide s-fc0"'"]/text()').extract()
-        # enumerate
+        # a = response.text
+        # # 带有图片的上面的链接
+        # links_msk = response.selector.xpath('//a[@class = "'"msk"'"]')
+        # for link in links_msk:
+        #     singerItem = SingerItem()
+        #     try:
+        #
+        #         singerItem['name'] = link.xpath('text()').extract_first()
+        #         singerItem['artistLink'] = link.xpath('@href').extract_first()
+        #         singerItem['isCertificated'] = None
+        #         singerItem['userHomeLink'] = None
+        #     except Exception as e:
+        #         print(e)
+        #     singerItem['timestamp'] = datetime.now().strftime("%Y%m%d %H:%M:%S")
+        #     yield singerItem
+
         links =response.selector.xpath('//a[@class = "'"nm nm-icn f-thide s-fc0"'"]')
         for link in links:
             singerItem = SingerItem()
